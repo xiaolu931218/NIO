@@ -1,4 +1,4 @@
-package com.test;
+package com.channel;
 
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
