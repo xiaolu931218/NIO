@@ -6,7 +6,7 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
 
 
-public class TestChannelWrite {
+public class TestFileChannelWrite {
 
     /**
      * 使用channel写到buffer
