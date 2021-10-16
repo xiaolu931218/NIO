@@ -17,7 +17,7 @@ public class TestServerSocketChannel {
         // 绑定
         ssc.socket().bind(new InetSocketAddress(port));
         // 设置非阻塞模式
-        ssc.configureBlocking(true);
+        ssc.configureBlocking(false);
         // 监听新链接传入
         while (true) {
             System.out.println("waiting for new connection...");
