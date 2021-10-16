@@ -5,7 +5,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 
-public class TestChannel {
+public class TestChannelRead {
 
     /**
      * 使用channel读取到buffer
