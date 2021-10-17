@@ -27,6 +27,8 @@ public class TestFileChannelRead {
         while (read != -1) {
 
             System.out.println("读取了》》" + read);
+
+            // The limit is set to the current position and then the position is set to zero.
             byteBuffer.flip();
             while (byteBuffer.hasRemaining()) {
                 System.out.println((char) byteBuffer.get());
