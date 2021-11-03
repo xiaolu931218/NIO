@@ -1,4 +1,4 @@
-package multichat.client;
+package atguigu.multichat.client;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

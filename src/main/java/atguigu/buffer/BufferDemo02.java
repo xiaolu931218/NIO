@@ -1,4 +1,4 @@
-package com.buffer;
+package atguigu.buffer;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package multichat.server;
+package atguigu.multichat.server;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

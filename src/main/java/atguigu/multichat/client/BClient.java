@@ -1,12 +1,12 @@
-package multichat.client;
+package atguigu.multichat.client;
 
 import java.io.IOException;
 
-public class AClient {
+public class BClient {
 
     public static void main(String[] args) {
         try {
-            new ChatClient().startClient("lucy");
+            new ChatClient().startClient("mary");
         } catch (IOException e) {
             e.printStackTrace();
         }

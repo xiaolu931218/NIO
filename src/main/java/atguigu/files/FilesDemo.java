@@ -1,4 +1,4 @@
-package com.files;
+package atguigu.files;
 
 import java.io.File;
 import java.io.IOException;

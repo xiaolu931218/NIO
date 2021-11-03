@@ -1,4 +1,4 @@
-package com.channel;
+package atguigu.channel;
 
 import org.junit.Test;
 

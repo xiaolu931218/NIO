@@ -1,4 +1,4 @@
-package com.channel;
+package atguigu.channel;
 
 
 import java.io.IOException;

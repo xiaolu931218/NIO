@@ -1,4 +1,4 @@
-package com.filelock;
+package atguigu.filelock;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

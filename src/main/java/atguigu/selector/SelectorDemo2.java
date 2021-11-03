@@ -1,4 +1,4 @@
-package com.selector;
+package atguigu.selector;
 
 
 import org.junit.Test;
