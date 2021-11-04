@@ -3,6 +3,7 @@ package powernode;
 import org.junit.Test;
 
 import java.nio.CharBuffer;
+import java.util.Arrays;
 
 public class Main {
 
@@ -53,6 +54,22 @@ public class Main {
             System.out.println("get：" + charBuffer.get());
             System.out.println("get后的position：" + charBuffer.position());
         }
+
+
+    }
+    @Test
+    public void test02() {
+        CharBuffer charBuffer = CharBuffer.allocate(10);
+        charBuffer.put("零一二三四五六七八九");
+        charBuffer.flip();
+        System.out.println("buffer>>" + charBuffer);
+        char[] cArray = new char[6];
+        // 将buffer中的数据读到数组中，返回的是剩余的数据的buffer
+        CharBuffer remainBuffer = charBuffer.get(cArray);
+        System.out.println("buffer>>" + charBuffer);
+        System.out.println("remainBuffer>>" + remainBuffer);
+        System.out.println("cArray>>" + Arrays.toString(cArray));
+//        charBuffer.get(cArray); // 当缓冲区的数据不足以填满数组时，报java.nio.BufferUnderflowException
 
 
     }
