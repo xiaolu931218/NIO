@@ -73,4 +73,36 @@ public class Main {
 
 
     }
+
+    /**
+     * 创建缓冲区的方式
+     * 这两种都是间接缓冲区
+     */
+    @Test
+    public void test03() {
+        // 第一种、分配操作
+        CharBuffer buffer1 = CharBuffer.allocate(10);
+        buffer1.put("123");
+        buffer1.flip();
+        System.out.println("buffer1>>" + buffer1);
+
+        // 第二种、包装方法
+        char[] chars = new char[10];
+        chars[0] = 'a';
+
+        CharBuffer charBuffer = CharBuffer.wrap(chars);
+        chars[1] = 'b';
+        System.out.println("buffer>>" + charBuffer);
+        System.out.println("chars>>" + Arrays.toString(chars));
+        charBuffer.put("c");
+        charBuffer.flip();
+        System.out.println("after put c==================" );
+        System.out.println("buffer>>" + charBuffer);
+        System.out.println("chars>>" + Arrays.toString(chars));
+        // 判断是否有备份数组
+        System.out.println("备份数组>>" + Arrays.toString(charBuffer.array()));
+
+
+
+    }
 }
