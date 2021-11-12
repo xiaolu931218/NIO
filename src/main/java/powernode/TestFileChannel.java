@@ -3,6 +3,7 @@ package powernode;
 import org.junit.Test;
 
 import java.io.*;
+import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
@@ -38,6 +39,33 @@ public class TestFileChannel {
             // 设置channel的position属性
             channel.position(outFile.length());
             channel.write(buffer);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 缓冲区大小固定时复制文件
+     * 将in.txt中的内容写到out.txt文件中
+     */
+    @Test
+    public void test03() {
+
+        File inFile = new File("F:\\tmp\\in.txt");
+        File outFile = new File("F:\\tmp\\out.txt");
+        try (
+                FileChannel inChannel = new FileInputStream(inFile).getChannel();
+                FileChannel outChannel = new FileOutputStream(outFile).getChannel();
+        ){
+            ByteBuffer byteBuffer = ByteBuffer.allocate(2);
+            while (inChannel.read(byteBuffer) != -1) {
+                byteBuffer.flip();
+                outChannel.write(byteBuffer);
+                byteBuffer.clear();
+            }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
