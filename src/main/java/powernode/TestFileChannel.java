@@ -3,9 +3,11 @@ package powernode;
 import org.junit.Test;
 
 import java.io.*;
+import java.net.URLConnection;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
 
 public class TestFileChannel {
 
@@ -91,6 +93,38 @@ public class TestFileChannel {
 //            inChannel.transferTo(0, inFile.length(), outChannel);
             // 把inChannel的内容传输到outChannel
             outChannel.transferFrom(inChannel, 0, inFile.length());
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 通过gather方式写入文件
+     */
+    @Test
+    public void test05() {
+
+        File inFile = new File("F:\\tmp\\in.txt");
+        File outFile = new File("F:\\tmp\\out.txt");
+        try (
+                FileChannel inChannel = new FileInputStream(inFile).getChannel();
+                FileChannel outChannel = new FileOutputStream(outFile).getChannel();
+        ){
+            ByteBuffer pathBuffer = ByteBuffer.allocate(1024);
+            ByteBuffer typeBuffer = ByteBuffer.allocate(48);
+            ByteBuffer contentBuffer = inChannel.map(FileChannel.MapMode.READ_ONLY, 0, inChannel.size());
+            // 字节数组进行聚集
+            ByteBuffer[] byteBuffers = {pathBuffer, typeBuffer, contentBuffer};
+
+            pathBuffer.put((inFile.getAbsolutePath() + "\r\n").getBytes(StandardCharsets.UTF_8));
+            typeBuffer.put((URLConnection.guessContentTypeFromName(inFile.getAbsolutePath()) + "\r\n").getBytes(StandardCharsets.UTF_8));
+            // 不返回0就一直写
+            while (outChannel.write(byteBuffers) > 0) {}
 
 
         } catch (FileNotFoundException e) {
