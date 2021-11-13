@@ -72,4 +72,31 @@ public class TestFileChannel {
             e.printStackTrace();
         }
     }
+
+
+    /**
+     * 把文件批量的从一个位置复制到另一个位置，可以使用channel传输到另一个channel，不需要使用buffer
+     * 将in.txt中的内容写到out.txt文件中
+     */
+    @Test
+    public void test04() {
+
+        File inFile = new File("F:\\tmp\\in.txt");
+        File outFile = new File("F:\\tmp\\out.txt");
+        try (
+                FileChannel inChannel = new FileInputStream(inFile).getChannel();
+                FileChannel outChannel = new FileOutputStream(outFile).getChannel();
+        ){
+//            // 把inChannel的内容传输到outChannel
+//            inChannel.transferTo(0, inFile.length(), outChannel);
+            // 把inChannel的内容传输到outChannel
+            outChannel.transferFrom(inChannel, 0, inFile.length());
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
